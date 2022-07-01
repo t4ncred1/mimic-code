@@ -3,7 +3,7 @@
 echo 'CREATING MIMIC ... '
 
 # this flag allows us to initialize the docker repo without building the data
-if [ $BUILD_MIMIC -eq 1 ]
+if [ "$BUILD_MIMIC" -eq 1 ]
 then
 echo "running create mimic user"
 
@@ -18,7 +18,7 @@ psql <<- EOSQL
     CREATE DATABASE MIMIC OWNER MIMIC;
     \c mimic;
     CREATE SCHEMA mimiciii;
-		ALTER SCHEMA mimiciii OWNER TO mimicuser;
+		ALTER SCHEMA mimiciii OWNER TO mimic;
 EOSQL
 
 # check for the admissions to set the extension
@@ -30,7 +30,7 @@ elif [ -e "/mimic_data/ADMISSIONS.csv" ]; then
   EXT='.csv'
 else
   echo "Unable to find a MIMIC data file (ADMISSIONS) in /mimic_data"
-  echo "Did you map a local directory using `docker run -v /path/to/mimic/data:/mimic_data` ?"
+  echo "Did you map a local directory using \`docker run -v /path/to/mimic/data:/mimic_data\` ?"
   exit 1
 fi
 
