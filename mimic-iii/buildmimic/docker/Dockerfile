@@ -19,4 +19,5 @@ RUN mkdir -p /mimic-code /mimic_data \
  # copy the build scripts into a different folder and remove the temp folder
  && cp -r mimic-iii/buildmimic /docker-entrypoint-initdb.d/ \
  && cp mimic-iii/buildmimic/docker/setup.sh /docker-entrypoint-initdb.d/ \
+ && cp mimic-iii/buildmimic/docker/chown.sh /docker-entrypoint-initdb.d/ \
  && rm -rf /mimic-code
